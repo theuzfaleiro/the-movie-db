@@ -4,30 +4,71 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
+
     defaultConfig {
-        applicationId "theuzfaleiro.github.io.themoviedb"
+        applicationId 'theuzfaleiro.github.io.themoviedb'
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionName '1.0'
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
     }
+
     buildTypes {
-        release {
+
+        debug {
+
+            shrinkResources false
             minifyEnabled false
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
         }
+
+        release {
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
+        }
+    }
+
+    androidExtensions {
+        experimental true
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation libs.appCompat
+    implementation libs.supportDesign
+    implementation libs.constraintLayout
+    implementation libs.retrofit
+    implementation libs.retrofitConverter
+    implementation libs.retrofitRxJavaAdaper
+    implementation libs.okHttpInterceptor
+    implementation libs.dagger
+    implementation libs.daggerSupport
+    kapt libs.daggerCompiler
+    kapt libs.daggerAndroidProcessor
+    implementation libs.rxjava
+    implementation libs.rxAndroid
+    implementation libs.glide
+    kapt libs.glideCompiler
+
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    testImplementation testLibs.mockitoKotlin
+    testImplementation testLibs.mockWebServer
+    androidTestImplementation testLibs.restMock
+    androidTestImplementation testLibs.androidTestRunner
+    androidTestImplementation testLibs.androidTestRules
+    androidTestImplementation testLibs.espressoCore
+    androidTestImplementation testLibs.espressoContrib
+    androidTestImplementation testLibs.espressoIntents
 }

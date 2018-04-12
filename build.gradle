@@ -1,25 +1,82 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
+
     ext.kotlin_version = '1.2.31'
+
     repositories {
         google()
         jcenter()
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
 allprojects {
     repositories {
         google()
+
         jcenter()
+
+        maven {
+            url "https://jitpack.io"
+        }
     }
+}
+
+ext {
+    versions = [
+            supportDesignVersion     : "27.1.0",
+            constraintLayoutVersion  : "1.1.0-beta6",
+            retrofitVersion          : "2.3.0",
+            okHttpVersion            : "3.10.0",
+            daggerVersion            : "2.15",
+            glideVersion             : "4.4.0",
+            rxJavaVersion            : "2.1.10",
+            rxAndroidVersion         : "2.0.2",
+            rxAdapterVersion         : "2.3.0",
+            mockWebServerVersion     : "3.9.1",
+            restMockVersion          : "0.3.1",
+            mockitoKotlinVersion     : "1.5.0",
+            androidSupportTestVersion: "1.0.1",
+            espressoVersion          : "3.0.1"]
+
+    libs = [
+            appCompat             : "com.android.support:appcompat-v7:${versions.supportDesignVersion}",
+            supportDesign         : "com.android.support:design:${versions.supportDesignVersion}",
+            constraintLayout      : "com.android.support.constraint:constraint-layout:${versions.constraintLayoutVersion}",
+
+            retrofit              : "com.squareup.retrofit2:retrofit:${versions.retrofitVersion}",
+            retrofitConverter     : "com.squareup.retrofit2:converter-moshi:${versions.retrofitVersion}",
+            retrofitRxJavaAdaper  : "com.squareup.retrofit2:adapter-rxjava2:${versions.rxAdapterVersion}",
+
+            okHttpInterceptor     : "com.squareup.okhttp3:logging-interceptor:${versions.okHttpVersion}",
+
+            dagger                : "com.google.dagger:dagger:${versions.daggerVersion}",
+            daggerSupport         : "com.google.dagger:dagger-android-support:${versions.daggerVersion}",
+            daggerCompiler        : "com.google.dagger:dagger-compiler:${versions.daggerVersion}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${versions.daggerVersion}",
+
+            rxjava                : "io.reactivex.rxjava2:rxjava:${versions.rxJavaVersion}",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:${versions.rxAndroidVersion}",
+
+            glide                 : "com.github.bumptech.glide:glide:${versions.glideVersion}",
+            glideCompiler         : "com.github.bumptech.glide:compiler:${versions.glideVersion}"]
+
+
+    testLibs = [
+            mockWebServer    : "com.squareup.okhttp3:mockwebserver:${versions.mockWebServerVersion}",
+            restMock         : "com.github.andrzejchm.RESTMock:android:${versions.restMockVersion}",
+
+            mockitoKotlin    : "com.nhaarman:mockito-kotlin:${versions.mockitoKotlinVersion}",
+
+            androidTestRunner: "com.android.support.test:runner:${versions.androidSupportTestVersion}",
+            androidTestRules : "com.android.support.test:rules:${versions.androidSupportTestVersion}",
+
+            espressoCore     : "com.android.support.test.espresso:espresso-core:${versions.espressoVersion}",
+            espressoContrib  : "com.android.support.test.espresso:espresso-contrib:${versions.espressoVersion}",
+            espressoIntents  : "com.android.support.test.espresso:espresso-intents:${versions.espressoVersion}"]
 }
 
 task clean(type: Delete) {
