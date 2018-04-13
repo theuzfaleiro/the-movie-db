@@ -4,8 +4,8 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
-import theuzfaleiro.github.io.themoviedb.data.model.movie.UpcomingMovies
+import theuzfaleiro.github.io.themoviedb.data.network.response.movie.Movie
+import theuzfaleiro.github.io.themoviedb.data.network.response.movie.UpcomingMovies
 
 interface TheMovieDbEndpoint {
 
