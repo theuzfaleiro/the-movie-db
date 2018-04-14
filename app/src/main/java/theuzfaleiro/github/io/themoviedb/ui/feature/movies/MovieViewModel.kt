@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
 import theuzfaleiro.github.io.themoviedb.data.network.repository.movie.MovieRepository
 import theuzfaleiro.github.io.themoviedb.util.Rx.RxSchedulers
+import theuzfaleiro.github.io.themoviedb.util.extension.handlerLoading
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -17,11 +18,13 @@ import javax.inject.Singleton
 class MovieViewModel(private val movieRepository: MovieRepository, private val rxSchedulers: RxSchedulers) : ViewModel() {
 
     val upcomingMovieList = MutableLiveData<List<Movie>>()
+    val loading = MutableLiveData<Boolean>()
 
     fun getUpcomingMovies(page: Int = 1) {
         movieRepository.getMoviesFromApi(page)
                 .subscribeOn(rxSchedulers.io())
                 .observeOn(rxSchedulers.ui())
+                .handlerLoading(loading)
                 .flatMap {
                     Observable
                             .fromIterable(it.results)
@@ -47,6 +50,7 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
         movieRepository.searchMovieAtApi(movieName)
                 .subscribeOn(rxSchedulers.io())
                 .observeOn(rxSchedulers.ui())
+                .handlerLoading(loading)
                 .flatMap {
                     Observable
                             .fromIterable(it.results)
@@ -68,8 +72,8 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
                 })
     }
 
-    fun ab(stringaq: Observable<String>) {
-        stringaq.debounce(300, TimeUnit.MILLISECONDS)
+    fun searchMovieNameWithGivenString(searchObserver: Observable<String>) {
+        searchObserver.debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .switchMapSingle {
                     movieRepository.searchMovieAtApi(it)
@@ -85,7 +89,6 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
                 }
                 .subscribeWith(object : Observer<List<Movie>> {
                     override fun onComplete() {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
                     }
 
                     override fun onNext(t: List<Movie>) {

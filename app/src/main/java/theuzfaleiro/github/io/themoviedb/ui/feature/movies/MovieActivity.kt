@@ -40,25 +40,27 @@ class MovieActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.movie_menu, menu)
 
-        val mSearch = menu.findItem(R.id.action_search)
-
-        val mSearchView = mSearch.actionView as SearchView
+        val searchEditText = menu.findItem(R.id.action_search).actionView as SearchView;
 
         val publishSubject = PublishSubject.create<String>()
 
-        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                movieViewModel.searchFromMovie(query)
+        searchEditText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(movieName: String): Boolean {
+
+                movieViewModel.searchFromMovie(movieName)
+
                 return false
             }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                publishSubject.onNext(newText)
+            override fun onQueryTextChange(movieName: String): Boolean {
+
+                publishSubject.onNext(movieName)
+
                 return false
             }
         })
 
-        movieViewModel.ab(publishSubject)
+        movieViewModel.searchMovieNameWithGivenString(publishSubject)
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -70,6 +72,10 @@ class MovieActivity : AppCompatActivity() {
             }
         })
 
+        movieViewModel.loading.observe(this@MovieActivity, Observer { isLoading ->
+            viewFlipperMovie.displayedChild = if (isLoading == true) SHOW_LOADER else SHOW_CONTENT
+        })
+
         movieViewModel.getUpcomingMovies(1)
     }
 
@@ -77,12 +83,17 @@ class MovieActivity : AppCompatActivity() {
     private fun initMovieRecyclerView(it: List<Movie>) {
         with(recyclerViewMovie) {
             layoutManager = GridLayoutManager(this@MovieActivity,
-                    4)
+                    3)
             adapter = MovieAdapter(it) {
                 Toast.makeText(this@MovieActivity, it.originalTitle, Toast.LENGTH_LONG).show()
             }
 
             setHasFixedSize(true)
         }
+    }
+
+    companion object {
+        private const val SHOW_LOADER = 1
+        private const val SHOW_CONTENT = 0
     }
 }

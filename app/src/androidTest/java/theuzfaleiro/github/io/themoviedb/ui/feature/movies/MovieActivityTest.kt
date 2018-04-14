@@ -1,15 +1,18 @@
 package theuzfaleiro.github.io.themoviedb.ui.feature.movies
 
 import android.content.Intent
-import android.support.test.espresso.Espresso
-import android.support.test.espresso.assertion.ViewAssertions
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.intent.rule.IntentsTestRule
-import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.withContentDescription
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import io.appflate.restmock.RESTMockServer
 import io.appflate.restmock.utils.RequestMatchers
+import org.hamcrest.Matchers.containsString
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import theuzfaleiro.github.io.themoviedb.R
 
 class MovieActivityTest {
 
@@ -27,6 +30,6 @@ class MovieActivityTest {
 
         pullRequestActivityTestRule.launchActivity(Intent())
 
-        Espresso.onView(ViewMatchers.withText("Vingadores: Guerra Infinita")).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.imageViewMoviePoster)).check(matches(withContentDescription(containsString("Vingadores: Guerra Infinita"))));
     }
 }
