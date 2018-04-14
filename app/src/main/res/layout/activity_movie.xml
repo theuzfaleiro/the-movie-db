@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="8dp"
     tools:context=".ui.feature.movies.MovieActivity">
 
     <ViewFlipper
@@ -19,6 +20,7 @@
             android:id="@+id/recyclerViewMovie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clipToPadding="false"
             tools:layoutManager="android.support.v7.widget.GridLayoutManager"
             tools:listitem="@layout/item_movie_layout"
             tools:orientation="vertical"
