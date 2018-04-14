@@ -15,6 +15,9 @@ interface TheMovieDbEndpoint {
     @GET("movie/upcoming")
     fun getUpcomingMoviesFromApi(@Query("page") page: Int): Single<UpcomingMovies>
 
+    @GET("search/movie")
+    fun searchMovieAtApi(@Query("query") movieName: String): Single<UpcomingMovies>
+
     @GET("movie/{id}")
     fun getMovieFromApi(@Path("id") id: Int): Single<Movie>
 }

@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="8dp"
+    android:orientation="vertical"
     tools:context=".ui.feature.movies.MovieActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarMovie"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     <ViewFlipper
         android:id="@+id/viewFlipperMovie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerViewMovie"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
             tools:layoutManager="android.support.v7.widget.GridLayoutManager"
             tools:listitem="@layout/item_movie_layout"
             tools:orientation="vertical"
@@ -33,4 +36,4 @@
             android:layout_gravity="center" />
 
     </ViewFlipper>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
