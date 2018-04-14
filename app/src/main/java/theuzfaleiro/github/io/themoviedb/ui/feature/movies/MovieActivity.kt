@@ -5,13 +5,16 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.widget.SearchView
 import android.widget.Toast
 import dagger.android.AndroidInjection
+import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_movie.*
 import theuzfaleiro.github.io.themoviedb.R
 import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
 import javax.inject.Inject
+
 
 class MovieActivity : AppCompatActivity() {
 
@@ -26,16 +29,44 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
 
+        setSupportActionBar(findViewById(R.id.toolbarMovie))
+
         movieViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieViewModel::class.java)
+
 
         movie()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.movie_menu, menu)
+
+        val mSearch = menu.findItem(R.id.action_search)
+
+        val mSearchView = mSearch.actionView as SearchView
+
+        val publishSubject = PublishSubject.create<String>()
+
+        mSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                movieViewModel.searchFromMovie(query)
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                publishSubject.onNext(newText)
+                return false
+            }
+        })
+
+        movieViewModel.ab(publishSubject)
+
+        return super.onCreateOptionsMenu(menu)
+    }
 
     private fun movie() {
         movieViewModel.upcomingMovieList.observe(this@MovieActivity, Observer {
             it?.let {
-                initPullRequestRecyclerView(it)
+                initMovieRecyclerView(it)
             }
         })
 
@@ -43,7 +74,7 @@ class MovieActivity : AppCompatActivity() {
     }
 
 
-    private fun initPullRequestRecyclerView(it: List<Movie>) {
+    private fun initMovieRecyclerView(it: List<Movie>) {
         with(recyclerViewMovie) {
             layoutManager = GridLayoutManager(this@MovieActivity,
                     4)

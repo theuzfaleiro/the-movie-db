@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.item_movie_layout.view.*
 import theuzfaleiro.github.io.themoviedb.R
 import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
+import theuzfaleiro.github.io.themoviedb.util.builder.toPosterUrl
 
 class MovieAdapter(private val movieList: List<Movie> = listOf(), private val movieSelected: (movieSelected: Movie) -> Unit) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
@@ -29,7 +31,10 @@ class MovieAdapter(private val movieList: List<Movie> = listOf(), private val mo
         fun bindItemsToView(movie: Movie, movieSelected: (movieSelected: Movie) -> Unit) {
 
             Glide.with(moviePoster.context)
-                    .load("https://image.tmdb.org/t/p/w780/noU2Im2GcF9TuqJcJUaU2peP5rO.jpg")
+                    .load(movie.posterPath?.toPosterUrl() ?: "")
+                    .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)
+                            .error(R.drawable.ic_launcher_background)
+                    )
                     .into(moviePoster)
 
             itemView.setOnClickListener {
