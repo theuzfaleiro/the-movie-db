@@ -1,8 +1,232 @@
-<?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.feature.detail.MovieDetailActivity">
+    android:background="@color/colorPrimary">
+
+    <ViewFlipper
+        android:id="@+id/viewFlipperMovieDetail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fitsSystemWindows="true"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/collapsing_toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleTextAppearance="@style/TransparentText"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <ImageView
+                        android:id="@+id/imageViewBackdrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:fitsSystemWindows="true"
+                        android:scaleType="centerCrop"
+                        app:layout_collapseMode="parallax"
+                        tools:src="@tools:sample/backgrounds/scenic" />
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbarMovieDetail"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:layout_collapseMode="parallax"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+                </android.support.design.widget.CollapsingToolbarLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textViewMovieName"
+                        style="@style/BaseTextViewTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito_bold"
+                        app:layout_constraintEnd_toStartOf="@+id/imageViewMoviePoster"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@tools:sample/full_names" />
+
+                    <TextView
+                        android:id="@+id/textViewOriginalTitle"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="@id/textViewMovieName"
+                        app:layout_constraintTop_toBottomOf="@id/textViewMovieName"
+                        tools:text="@tools:sample/full_names" />
+
+                    <TextView
+                        android:id="@+id/textViewOriginalTitleSeparator"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/activity_movie_detail_item_separator"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:layout_constraintBaseline_toBaselineOf="@id/textViewOriginalTitle"
+                        app:layout_constraintStart_toEndOf="@id/textViewOriginalTitle"
+                        app:layout_constraintTop_toBottomOf="@id/textViewMovieName" />
+
+                    <TextView
+                        android:id="@+id/textViewOriginalLanguage"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        app:layout_constraintBaseline_toBaselineOf="@id/textViewOriginalTitleSeparator"
+                        app:layout_constraintStart_toEndOf="@id/textViewOriginalTitleSeparator"
+                        tools:text="en" />
+
+                    <ImageView
+                        android:id="@+id/imageViewMoviePoster"
+                        android:layout_width="100dp"
+                        android:layout_height="150dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textViewMovieName"
+                        tools:src="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/textViewReleaseDate"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintStart_toStartOf="@+id/textViewOriginalTitle"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewOriginalTitle"
+                        tools:text="2017" />
+
+                    <TextView
+                        android:id="@+id/textViewBudgetSeparator"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/activity_movie_detail_item_separator"
+                        android:textColor="@color/colorPrimaryDark"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textViewReleaseDate"
+                        app:layout_constraintBottom_toBottomOf="@+id/textViewReleaseDate"
+                        app:layout_constraintStart_toEndOf="@+id/textViewReleaseDate"
+                        app:layout_constraintTop_toTopOf="@+id/textViewReleaseDate" />
+
+                    <TextView
+                        android:id="@+id/textViewRuntime"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textViewBudgetSeparator"
+                        app:layout_constraintStart_toEndOf="@+id/textViewBudgetSeparator"
+                        tools:text="113" />
+
+                    <TextView
+                        android:id="@+id/textViewMovieTime"
+                        style="@style/BaseTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="@string/activity_movie_detail_message_movie_runtime"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/textViewRuntime"
+                        app:layout_constraintStart_toEndOf="@+id/textViewRuntime" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recyclerViewSpokenLanguages"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="@id/textViewReleaseDate"
+                        app:layout_constraintTop_toBottomOf="@id/textViewReleaseDate"
+                        tools:itemCount="3"
+                        tools:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                        tools:listitem="@layout/item_spoken_language"
+                        tools:orientation="horizontal" />
+
+
+                    <RatingBar
+                        android:id="@+id/ratingBarVoteAverage"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:numStars="10"
+                        android:stepSize="1"
+                        android:theme="@style/WhiteRatingStar"
+                        app:layout_constraintStart_toStartOf="@id/recyclerViewSpokenLanguages"
+                        app:layout_constraintTop_toBottomOf="@+id/recyclerViewSpokenLanguages"
+                        tools:rating="5.5" />
+
+                    <TextView
+                        android:id="@+id/textViewTagLine"
+                        style="@style/BaseTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="8dp"
+                        android:textAllCaps="true"
+                        app:layout_constraintEnd_toEndOf="@+id/imageViewMoviePoster"
+                        app:layout_constraintStart_toStartOf="@+id/textViewReleaseDate"
+                        app:layout_constraintTop_toBottomOf="@+id/imageViewMoviePoster"
+                        tools:text="All you need is one killer track " />
+
+                    <TextView
+                        android:id="@+id/textViewOverview"
+                        style="@style/BaseTextView"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintEnd_toEndOf="@+id/imageViewMoviePoster"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTagLine"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTagLine"
+                        tools:text="After being coerced into working for a crime boss, a young getaway driver finds himself taking part in a heist doomed to fail." />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+        </android.support.design.widget.CoordinatorLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBarMovieDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+    </ViewFlipper>
 
 </android.support.constraint.ConstraintLayout>
+
