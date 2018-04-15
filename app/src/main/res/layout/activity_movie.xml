@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:layoutManager="android.support.v7.widget.GridLayoutManager"
-            tools:listitem="@layout/item_movie_layout"
+            tools:listitem="@layout/item_movie"
             tools:orientation="vertical"
             tools:spanCount="4" />
 
