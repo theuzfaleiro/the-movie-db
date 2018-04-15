@@ -8,7 +8,7 @@ import theuzfaleiro.github.io.themoviedb.data.model.detail.SpokenLanguages
 
 data class MovieDetail(
         @Json(name = "adult") val adult: Boolean,
-        @Json(name = "backdrop_Path") val backdropPath: String? = null,
+        @Json(name = "backdrop_path") val backdropPath: String? = null,
         @Json(name = "budget") val budget: Int,
         @Json(name = "genres") val genres: List<Genres> = listOf(),
         @Json(name = "id") val id: Int,

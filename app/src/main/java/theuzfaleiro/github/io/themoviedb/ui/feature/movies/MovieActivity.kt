@@ -35,7 +35,7 @@ class MovieActivity : AppCompatActivity() {
         movieViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieViewModel::class.java)
 
 
-        movie()
+        getUpcomingMovieList()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,7 +66,7 @@ class MovieActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    private fun movie() {
+    private fun getUpcomingMovieList() {
 
         with(movieViewModel) {
 

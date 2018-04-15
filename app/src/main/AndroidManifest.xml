@@ -31,7 +31,12 @@
 
         <activity
             android:name=".ui.feature.detail.MovieDetailActivity"
+            android:parentActivityName=".ui.feature.movies.MovieActivity"
             android:theme="@style/WithoutActionBar" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

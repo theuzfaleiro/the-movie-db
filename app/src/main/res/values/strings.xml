@@ -2,4 +2,6 @@
     <string name="app_name">The Movie DB</string>
     <string name="activity_movie_message_search_movie">Search For A Movie</string>
     <string name="activity_movie_content_description">Movie Titile</string>
+    <string name="activity_movie_detail_item_separator">•</string>
+    <string name="activity_movie_detail_message_movie_runtime">mins</string>
 </resources>
