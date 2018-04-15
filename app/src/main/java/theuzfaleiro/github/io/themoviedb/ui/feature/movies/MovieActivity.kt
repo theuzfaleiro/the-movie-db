@@ -2,17 +2,18 @@ package theuzfaleiro.github.io.themoviedb.ui.feature.movies
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.view.Menu
 import android.widget.SearchView
-import android.widget.Toast
 import dagger.android.AndroidInjection
 import io.reactivex.subjects.PublishSubject
 import kotlinx.android.synthetic.main.activity_movie.*
 import theuzfaleiro.github.io.themoviedb.R
 import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
+import theuzfaleiro.github.io.themoviedb.ui.feature.detail.MovieDetailActivity
 import javax.inject.Inject
 
 
@@ -66,15 +67,19 @@ class MovieActivity : AppCompatActivity() {
     }
 
     private fun movie() {
-        movieViewModel.upcomingMovieList.observe(this@MovieActivity, Observer {
-            it?.let {
-                initMovieRecyclerView(it)
-            }
-        })
 
-        movieViewModel.loading.observe(this@MovieActivity, Observer { isLoading ->
-            viewFlipperMovie.displayedChild = if (isLoading == true) SHOW_LOADER else SHOW_CONTENT
-        })
+        with(movieViewModel) {
+
+            upcomingMovieList.observe(this@MovieActivity, Observer {
+                it?.let {
+                    initMovieRecyclerView(it)
+                }
+            })
+
+            loading.observe(this@MovieActivity, Observer { isLoading ->
+                viewFlipperMovie.displayedChild = if (isLoading == true) SHOW_LOADER else SHOW_CONTENT
+            })
+        }
 
         movieViewModel.getUpcomingMovies(1)
     }
@@ -84,8 +89,9 @@ class MovieActivity : AppCompatActivity() {
         with(recyclerViewMovie) {
             layoutManager = GridLayoutManager(this@MovieActivity,
                     3)
-            adapter = MovieAdapter(it) {
-                Toast.makeText(this@MovieActivity, it.originalTitle, Toast.LENGTH_LONG).show()
+            adapter = MovieAdapter(it) { movieSelected ->
+                startActivity(Intent(this@MovieActivity,
+                        MovieDetailActivity::class.java).putExtra(MovieDetailActivity.MOVIE_SELECTED, movieSelected))
             }
 
             setHasFixedSize(true)
