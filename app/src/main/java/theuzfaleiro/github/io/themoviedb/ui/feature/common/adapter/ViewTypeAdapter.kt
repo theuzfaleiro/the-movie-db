@@ -2,7 +2,6 @@ package theuzfaleiro.github.io.themoviedb.ui.feature.common.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import theuzfaleiro.github.io.themoviedb.ui.feature.common.adapter.ViewType
 
 interface ViewTypeAdapter {
 

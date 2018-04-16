@@ -4,12 +4,10 @@ import android.content.Intent
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.rule.ActivityTestRule
-import android.support.v7.widget.RecyclerView
 import io.appflate.restmock.RESTMockServer
 import io.appflate.restmock.utils.RequestMatchers
 import io.appflate.restmock.utils.RequestMatchers.pathContains
@@ -58,7 +56,8 @@ class MovieDetailActivityTest {
 
         onView(withId(R.id.imageButtonTryAgain)).perform(ViewActions.click())
 
-        onView(withId(R.id.textViewMovieName)).check(matches(withText("Black Panther")))    }
+        onView(withId(R.id.textViewMovieName)).check(matches(withText("Black Panther")))
+    }
 
     @Test
     fun shouldOpenMovieDetailActivity_WhenAMovieWasSelected() {
@@ -72,6 +71,5 @@ class MovieDetailActivityTest {
 
     }
 
-    private fun getMockedMovie() = Movie(1, "", 284054, true, 2.4, "Black Panther", 1.0,
-            "", "Black Panther", "Black Panther", listOf(), "", false, "2018")
+    private fun getMockedMovie() = Movie("", 1, "", "", "en", "", listOf(), "", "")
 }

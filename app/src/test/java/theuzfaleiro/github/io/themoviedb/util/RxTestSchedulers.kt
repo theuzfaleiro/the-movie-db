@@ -2,7 +2,7 @@ package io.github.theuzfaleiro.trendingongithub.utils
 
 import io.reactivex.Scheduler
 import io.reactivex.schedulers.TestScheduler
-import theuzfaleiro.github.io.themoviedb.util.Rx.RxSchedulers
+import theuzfaleiro.github.io.themoviedb.util.rx.RxSchedulers
 
 class RxTestSchedulers(private val testSchedulers: TestScheduler) : RxSchedulers {
 

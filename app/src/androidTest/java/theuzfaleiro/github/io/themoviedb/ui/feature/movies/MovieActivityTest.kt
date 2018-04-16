@@ -71,9 +71,7 @@ class MovieActivityTest {
         RESTMockServer.whenGET(RequestMatchers.pathContains("movie/upcoming")).thenReturnFile(200, "movie/movie-list.json")
 
         movieActivityTest.launchActivity(Intent().putExtra(MovieDetailActivity.MOVIE_SELECTED,
-                Movie(200, "", 1, true,
-                        10.0, "Scott Pilgrim vs. The World", 10.0, "", "en",
-                        "Scott Pilgrim vs. The World", listOf(1, 2, 3), "", false, "")))
+                Movie("", 1, "", "", "en", "", listOf(), "", "")))
 
         val activityResult = Instrumentation.ActivityResult(Activity.RESULT_OK, Intent())
 

@@ -5,7 +5,8 @@ import com.nhaarman.mockito_kotlin.whenever
 import io.github.theuzfaleiro.trendingongithub.utils.RxTestSchedulers
 import io.reactivex.Single
 import io.reactivex.schedulers.TestScheduler
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -46,7 +47,6 @@ class MovieDetailViewModelTest {
 
         assertEquals(movieDetailViewModel.searchedMovie.value!!.originalTitle, "Scott Pilgrim vs. The World")
 
-        assertFalse(movieDetailViewModel.searchedMovie.value!!.adult)
     }
 
     @Test
@@ -62,9 +62,9 @@ class MovieDetailViewModelTest {
 
 
     private fun getMockedMovieDetail(): Single<MovieDetail> =
-            Single.just(MovieDetail(false, "", 284054, listOf(), 500, "Black Panther", "en",
-                    "Scott Pilgrim vs. The World", "", 100.0, "",
-                    listOf(), listOf(), "", 1000, 143, listOf(), "open", "Scott vs. The World", "Scott Pilgrim vs. The World", false, 5.0, 10))
+            Single.just(MovieDetail("", 284054, listOf(), 500, "en", "Scott Pilgrim vs. The World",
+                    "Scott Pilgrim vs. The World", "", "", 180,
+                    "", "Scott Pilgrim vs. The World", 8.1))
 
 
     private fun getMockedError(): Single<MovieDetail> = Single.error(Throwable())

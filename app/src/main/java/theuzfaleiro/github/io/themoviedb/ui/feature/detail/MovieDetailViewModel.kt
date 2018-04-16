@@ -7,8 +7,8 @@ import io.reactivex.SingleObserver
 import io.reactivex.disposables.Disposable
 import theuzfaleiro.github.io.themoviedb.data.model.detail.MovieDetail
 import theuzfaleiro.github.io.themoviedb.data.network.repository.detail.MovieDetailRepository
-import theuzfaleiro.github.io.themoviedb.util.Rx.RxSchedulers
 import theuzfaleiro.github.io.themoviedb.util.extension.handlerLoading
+import theuzfaleiro.github.io.themoviedb.util.rx.RxSchedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 

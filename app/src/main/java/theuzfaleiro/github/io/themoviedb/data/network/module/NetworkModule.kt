@@ -13,8 +13,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import theuzfaleiro.github.io.themoviedb.BuildConfig
 import theuzfaleiro.github.io.themoviedb.TheMovieDbApplication
 import theuzfaleiro.github.io.themoviedb.data.network.TheMovieDbEndpoint
-import theuzfaleiro.github.io.themoviedb.util.Rx.AppScheduler
-import theuzfaleiro.github.io.themoviedb.util.Rx.RxSchedulers
+import theuzfaleiro.github.io.themoviedb.util.rx.AppScheduler
+import theuzfaleiro.github.io.themoviedb.util.rx.RxSchedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 

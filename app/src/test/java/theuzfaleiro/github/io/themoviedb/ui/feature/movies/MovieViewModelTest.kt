@@ -15,7 +15,6 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 import theuzfaleiro.github.io.themoviedb.data.network.repository.movie.MovieRepository
-import theuzfaleiro.github.io.themoviedb.data.network.response.movie.Dates
 import theuzfaleiro.github.io.themoviedb.data.network.response.movie.Movie
 import theuzfaleiro.github.io.themoviedb.data.network.response.movie.UpcomingMovies
 
@@ -52,7 +51,6 @@ class MovieViewModelTest {
 
         assertEquals(movieViewModel.upcomingMovieList.value!!.first().originalTitle, "Scott Pilgrim vs. The World")
 
-        assertFalse(movieViewModel.upcomingMovieList.value!!.first().adult)
     }
 
     @Test
@@ -93,9 +91,9 @@ class MovieViewModelTest {
     }
 
     private fun getMockedUpcomingMovies(): Single<UpcomingMovies> =
-            Single.just(UpcomingMovies(Dates(), 1, 2, listOf(Movie(200, "", 1, true,
-                    10.0, "Scott Pilgrim vs. The World", 10.0, "", "en",
-                    "Scott Pilgrim vs. The World", listOf(1, 2, 3), "", false, "")), 20))
+            Single.just(UpcomingMovies(listOf(Movie("", 284054, 1.1, "Scott Pilgrim vs. The World",
+                    "r", "en",
+                    "Scott Pilgrim vs. The World", listOf(), "", "2018"))))
 
     private fun getMockedError(): Single<UpcomingMovies> = Single.error(Throwable())
 }
