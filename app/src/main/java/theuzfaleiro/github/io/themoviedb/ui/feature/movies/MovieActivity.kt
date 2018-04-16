@@ -121,7 +121,7 @@ class MovieActivity : AppCompatActivity() {
                 }
             })
 
-            loading.observe(this@MovieActivity, Observer { isLoading ->
+            loading.observe(this@MovieActivity, Observer { _ ->
                 viewFlipperMovie.displayedChild = loading.value!!
             })
         }
