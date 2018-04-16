@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class MovieDetailViewModel(private val movieDetailRepository: MovieDetailRepository, private val rxSchedulers: RxSchedulers) : ViewModel() {
 
     val searchedMovie = MutableLiveData<MovieDetail>()
-    val loading = MutableLiveData<Boolean>()
+    val loading = MutableLiveData<Int>()
 
     fun getMovieDetails(movieId: Int) {
         movieDetailRepository.getMoviesFromApi(movieId)

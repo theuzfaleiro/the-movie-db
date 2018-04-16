@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+    android:background="@color/darkNavyBlue">
 
     <ViewFlipper
         android:id="@+id/viewFlipperMovieDetail"
@@ -21,6 +21,7 @@
 
             <android.support.design.widget.AppBarLayout
                 android:id="@+id/app_bar_layout"
+                app:titleTextColor="@color/lightGray"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fitsSystemWindows="true"
@@ -70,7 +71,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="16dp"
                         android:layout_marginTop="8dp"
                         android:fontFamily="@font/nunito_bold"
                         app:layout_constraintEnd_toStartOf="@+id/imageViewMoviePoster"
@@ -229,6 +230,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
+
+        <include layout="@layout/partial_layout_error" />
 
     </ViewFlipper>
 

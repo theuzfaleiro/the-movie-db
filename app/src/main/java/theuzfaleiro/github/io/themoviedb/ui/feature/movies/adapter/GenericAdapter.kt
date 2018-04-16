@@ -38,17 +38,26 @@ class GenericAdapter(clickListener: (repository: Movie) -> Unit) : RecyclerView.
 
     override fun getItemViewType(position: Int) = viewTypeItems[position].getViewType()
 
-    fun addNews(news: List<Movie>) {
+    fun addMovies(movies: List<Movie>) {
 
         val initialPosition = viewTypeItems.size - 1
 
         viewTypeItems.removeAt(initialPosition)
         notifyItemRemoved(initialPosition)
 
-        viewTypeItems.addAll(news)
+        viewTypeItems.addAll(movies)
 
         viewTypeItems.add(loadingItem)
 
         notifyItemRangeChanged(initialPosition, viewTypeItems.size + 1)
     }
+
+    fun refreshMovies(movies: List<Movie>) {
+
+        viewTypeItems.clear()
+        notifyDataSetChanged()
+
+        viewTypeItems.addAll(movies)
+    }
+
 }

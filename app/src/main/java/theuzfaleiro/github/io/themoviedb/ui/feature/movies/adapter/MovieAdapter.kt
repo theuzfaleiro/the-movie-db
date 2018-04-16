@@ -33,8 +33,7 @@ class MovieAdapter(private val movieSelected: (movieSelected: Movie) -> Unit) : 
             Glide.with(moviePoster.context)
                     .load(movie.posterPath?.toPosterUrl() ?: "")
                     .apply(RequestOptions().placeholder(R.drawable.ic_default_movie_cover)
-                            .error(R.drawable.ic_default_movie_cover)
-                    )
+                            .error(R.drawable.ic_error_movie_cover))
                     .into(moviePoster)
 
             itemView.setOnClickListener {

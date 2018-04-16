@@ -18,9 +18,11 @@ import javax.inject.Singleton
 class MovieViewModel(private val movieRepository: MovieRepository, private val rxSchedulers: RxSchedulers) : ViewModel() {
 
     val upcomingMovieList = MutableLiveData<List<Movie>>()
-    val loading = MutableLiveData<Boolean>()
+    val searchedMovieList = MutableLiveData<List<Movie>>()
 
-    fun getUpcomingMovies(page: Int = 1) {
+    val loading = MutableLiveData<Int>()
+
+    fun getUpcomingMovies(page: Int = 2) {
         movieRepository.getMoviesFromApi(page)
                 .subscribeOn(rxSchedulers.io())
                 .observeOn(rxSchedulers.ui())
@@ -37,10 +39,12 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
                     }
 
                     override fun onSuccess(movieList: List<Movie>) {
+                        loading.postValue(0)
                         upcomingMovieList.postValue(movieList)
                     }
 
                     override fun onError(error: Throwable) {
+                        loading.postValue(2)
                     }
                 })
     }
@@ -63,7 +67,7 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
                     }
 
                     override fun onSuccess(movieList: List<Movie>) {
-                        upcomingMovieList.postValue(movieList)
+                        searchedMovieList.postValue(movieList)
                     }
 
                     override fun onError(error: Throwable) {
@@ -91,7 +95,7 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
                     }
 
                     override fun onNext(t: List<Movie>) {
-                        upcomingMovieList.postValue(t)
+                        searchedMovieList.postValue(t)
                     }
 
                     override fun onSubscribe(disposable: Disposable) {
