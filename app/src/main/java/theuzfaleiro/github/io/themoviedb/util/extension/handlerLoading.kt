@@ -3,9 +3,13 @@ package theuzfaleiro.github.io.themoviedb.util.extension
 import android.arch.lifecycle.MutableLiveData
 import io.reactivex.Single
 
-fun <T> Single<T>.handlerLoading(loading: MutableLiveData<Boolean>): Single<T> {
+private const val INFORMATION = 0
+private const val LOADING = 1
+private const val ERROR = 2
+
+fun <T> Single<T>.handlerLoading(loading: MutableLiveData<Int>): Single<T> {
     return this
-            .doOnSubscribe { loading.postValue(true) }
-            .doOnError { loading.postValue(false) }
-            .doOnSuccess { loading.postValue(false) }
+            .doOnSubscribe { loading.postValue(LOADING) }
+            .doOnError { loading.postValue(ERROR) }
+            .doOnSuccess { loading.postValue(INFORMATION) }
 }

@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="4dp"
-    android:layout_marginTop="4dp">
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="8dp">
 
     <ImageView
         android:id="@+id/imageViewMoviePoster"
         android:layout_width="125dp"
         android:layout_height="175dp"
         android:contentDescription="@string/activity_movie_content_description"
+        android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@tools:sample/avatars" />
+
 
 </android.support.constraint.ConstraintLayout>

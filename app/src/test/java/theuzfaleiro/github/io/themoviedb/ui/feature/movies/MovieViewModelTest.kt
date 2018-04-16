@@ -1,7 +1,6 @@
 package theuzfaleiro.github.io.themoviedb.ui.feature.movies
 
 import android.arch.core.executor.testing.InstantTaskExecutorRule
-import com.nhaarman.mockito_kotlin.isA
 import com.nhaarman.mockito_kotlin.whenever
 import io.github.theuzfaleiro.trendingongithub.utils.RxTestSchedulers
 import io.reactivex.Single
@@ -76,9 +75,9 @@ class MovieViewModelTest {
 
         testSchedulers.triggerActions()
 
-        assertThat(movieViewModel.upcomingMovieList.value!!.size, `is`(1))
+        assertThat(movieViewModel.searchedMovieList.value!!.size, `is`(1))
 
-        assertEquals(movieViewModel.upcomingMovieList.value!!.first().originalTitle, "Scott Pilgrim vs. The World")
+        assertEquals(movieViewModel.searchedMovieList.value!!.first().originalTitle, "Scott Pilgrim vs. The World")
     }
 
 

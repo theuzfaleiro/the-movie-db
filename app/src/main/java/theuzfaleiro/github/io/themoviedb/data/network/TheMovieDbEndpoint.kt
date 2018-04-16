@@ -10,6 +10,13 @@ import theuzfaleiro.github.io.themoviedb.data.network.response.movie.UpcomingMov
 
 interface TheMovieDbEndpoint {
 
+    companion object {
+        const val URL = "https://api.themoviedb.org/3/"
+        const val API_KEY = "89a8f938241ef5ab367029cc715b5f1a"
+        const val DEFAULT_LANGUAGE = "pt-BR"
+        const val DEFAULT_REGION = "BR"
+    }
+
     @GET("genre/movie/list")
     fun getMovieGenresFromApi(): Single<Movie>
 
@@ -20,5 +27,5 @@ interface TheMovieDbEndpoint {
     fun searchMovieAtApi(@Query("query") movieName: String): Single<UpcomingMovies>
 
     @GET("movie/{id}")
-    fun getMovieFromApi(@Path("id") id: Int): Single<MovieDetail>
+    fun getMovieFromApi(@Path("id") id: Int, @Query("api_key") apiKey: String = API_KEY): Single<MovieDetail>
 }

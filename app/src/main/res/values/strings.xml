@@ -4,4 +4,6 @@
     <string name="activity_movie_content_description">Movie Titile</string>
     <string name="activity_movie_detail_item_separator">•</string>
     <string name="activity_movie_detail_message_movie_runtime">mins</string>
+    <string name="activity_movie_error_please_try_again">Please Try Again Later</string>
+    <string name="activity_movie_content_description_sad_face">Sad Face</string>
 </resources>
