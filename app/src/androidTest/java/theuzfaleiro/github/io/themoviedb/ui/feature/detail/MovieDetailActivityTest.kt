@@ -30,7 +30,7 @@ class MovieDetailActivityTest {
 
     @Test
     fun shouldShowMovieDetail_WhenFetchedMovieDetailDataFromAPI() {
-        RESTMockServer.whenGET(pathContains("movie/")).thenReturnFile(200, "detail/movie-list.json")
+        RESTMockServer.whenGET(pathContains("movie/")).thenReturnFile(200, "detail/movie-detail.json")
 
         pullRequestActivityTestRule.launchActivity(Intent().putExtra(MovieDetailActivity.MOVIE_SELECTED, getMockedMovie()))
 
@@ -42,7 +42,7 @@ class MovieDetailActivityTest {
     @Test
     fun shouldOpenMovieDetailActivity_WhenAMovieWasSelected() {
 
-        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/")).thenReturnFile(200, "detail/movie-list.json")
+        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/")).thenReturnFile(200, "detail/movie-detail.json")
 
         pullRequestActivityTestRule.launchActivity(Intent().putExtra(MovieDetailActivity.MOVIE_SELECTED, getMockedMovie()))
 
