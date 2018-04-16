@@ -22,6 +22,7 @@ class MovieDetailActivity : AppCompatActivity() {
 
     private var movieId: Int = 0
 
+
     @Inject
     lateinit var movieViewModelFactory: MovieDetailViewModelFactory
 
@@ -40,6 +41,16 @@ class MovieDetailActivity : AppCompatActivity() {
         getMovieDetailsFromSelectedMovie(movieId)
 
         tryToReloadMovieList()
+
+        initGenreRecyclerView()
+    }
+
+    private fun initGenreRecyclerView() {
+        with(recyclerViewGenres) {
+            layoutManager = android.support.v7.widget.LinearLayoutManager(this@MovieDetailActivity,
+                    android.support.v7.widget.LinearLayoutManager.HORIZONTAL, false)
+            setHasFixedSize(true)
+        }
     }
 
     private fun getMovieDetailsFromSelectedMovie(movieId: Int) {
@@ -55,6 +66,8 @@ class MovieDetailActivity : AppCompatActivity() {
 
                     textViewTagLine.text = tagline
                     textViewOverview.text = overview
+
+                    recyclerViewGenres.adapter = GenreAdapter(movieDetail!!.genres)
 
                     imageViewMoviePoster.contentDescription = title
 

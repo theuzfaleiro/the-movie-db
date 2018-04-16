@@ -4,14 +4,10 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import theuzfaleiro.github.io.themoviedb.data.network.response.detail.Genres
 import theuzfaleiro.github.io.themoviedb.data.network.response.detail.MovieDetail
 import theuzfaleiro.github.io.themoviedb.data.network.response.movie.UpcomingMovies
 
 interface TheMovieDbEndpoint {
-
-    @GET("genre/movie/list")
-    fun getMovieGenresFromApi(): Single<List<Genres>>
 
     @GET("movie/upcoming")
     fun getUpcomingMoviesFromApi(@Query("page") page: Int): Single<UpcomingMovies>
