@@ -79,7 +79,11 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
         searchObserver.debounce(300, TimeUnit.MILLISECONDS)
                 .distinctUntilChanged()
                 .switchMapSingle {
-                    movieRepository.searchMovieAtApi(it)
+                    if (it.isNotEmpty()) {
+                        movieRepository.searchMovieAtApi(it)
+                    } else {
+                        movieRepository.getMoviesFromApi(1)
+                    }
                 }.subscribeOn(rxSchedulers.io())
                 .observeOn(rxSchedulers.ui())
                 .flatMapSingle {
