@@ -56,12 +56,6 @@ class MovieActivity : AppCompatActivity() {
 
         searchEditText.queryHint = getString(R.string.activity_movie_message_search_movie)
 
-//        searchEditText.setOnCloseListener {
-//            movieViewModel.getUpcomingMovies(1)
-//
-//            false
-//        }
-
         val publishSubject = PublishSubject.create<String>()
 
         searchEditText.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
