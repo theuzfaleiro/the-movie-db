@@ -55,7 +55,7 @@ class NetworkModule {
             val originalHttpUrl = chain.request().url()
 
             val url = originalHttpUrl.newBuilder()
-                    .addQueryParameter("api_key", "89a8f938241ef5ab367029cc715b5f1a")
+//                    .addQueryParameter("api_key", "89a8f938241ef5ab367029cc715b5f1a")
                     .addQueryParameter("language", "en-US")
                     .addQueryParameter("region", "US")
                     .build()

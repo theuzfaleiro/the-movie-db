@@ -24,7 +24,6 @@ class MovieViewModel(private val movieRepository: MovieRepository, private val r
         movieRepository.getMoviesFromApi(page)
                 .subscribeOn(rxSchedulers.io())
                 .observeOn(rxSchedulers.ui())
-                .handlerLoading(loading)
                 .flatMap {
                     Observable
                             .fromIterable(it.results)

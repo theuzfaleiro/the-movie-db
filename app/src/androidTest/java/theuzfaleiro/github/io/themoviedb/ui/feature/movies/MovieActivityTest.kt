@@ -24,6 +24,7 @@ import theuzfaleiro.github.io.themoviedb.R
 import theuzfaleiro.github.io.themoviedb.data.model.movie.Movie
 import theuzfaleiro.github.io.themoviedb.ui.feature.detail.MovieDetailActivity
 
+
 class MovieActivityTest {
 
     @get:Rule
@@ -36,17 +37,17 @@ class MovieActivityTest {
 
     @Test
     fun shouldShowMovieList_WhenFetchedMovieDataFromAPI() {
-        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/")).thenReturnFile(200, "movie/movie-list.json")
+        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/upcoming")).thenReturnFile(200, "movie/movie-list.json")
 
         pullRequestActivityTestRule.launchActivity(Intent())
 
-        onView(withId(R.id.imageViewMoviePoster)).check(matches(withContentDescription(containsString("Vingadores: Guerra Infinita"))));
+        onView(withId(R.id.recyclerViewMovie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(5))
     }
 
     @Test
     fun shouldOpenMovieDetailActivity_WhenAMovieWasSelected() {
 
-        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/")).thenReturnFile(200, "movie/movie-list.json")
+        RESTMockServer.whenGET(RequestMatchers.pathContains("movie/upcoming")).thenReturnFile(200, "movie/movie-list.json")
 
         pullRequestActivityTestRule.launchActivity(Intent().putExtra(MovieDetailActivity.MOVIE_SELECTED,
                 Movie(200, "", 1, true,
@@ -62,4 +63,5 @@ class MovieActivityTest {
         Intents.intended(allOf(IntentMatchers.hasComponent(MovieDetailActivity::class.java.name),
                 IntentMatchers.hasExtraWithKey(MovieDetailActivity.MOVIE_SELECTED)))
     }
+
 }

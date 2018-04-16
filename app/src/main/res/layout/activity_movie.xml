@@ -12,6 +12,7 @@
         android:id="@+id/toolbarMovie"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        app:titleTextColor="@color/colorAccent"
         android:background="@color/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 

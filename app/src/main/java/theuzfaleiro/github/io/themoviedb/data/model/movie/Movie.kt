@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import theuzfaleiro.github.io.themoviedb.data.network.response.movie.Movie
+import theuzfaleiro.github.io.themoviedb.ui.feature.common.adapter.AdapterConstants
+import theuzfaleiro.github.io.themoviedb.ui.feature.common.adapter.ViewType
 
 @SuppressLint("ParcelCreator")
 @Parcelize
@@ -22,7 +24,9 @@ data class Movie(
         val backdropPath: String? = null,
         val adult: Boolean,
         val releaseDate: String
-) : Parcelable {
+) : ViewType, Parcelable {
+    override fun getViewType() = AdapterConstants.MOVIE
+
     constructor(movie: Movie) : this(
             voteCount = movie.voteCount,
             overview = movie.overview,

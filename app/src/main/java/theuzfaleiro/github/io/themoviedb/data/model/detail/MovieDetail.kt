@@ -52,7 +52,7 @@ data class MovieDetail(
             spokenLanguages = movieDetail.spokenLanguages,
             productionCountries = movieDetail.productionCountries,
             releaseDate = movieDetail.releaseDate,
-            voteAverage = movieDetail.voteAverage.toFloat(),
+            voteAverage = movieDetail.voteAverage.toFloat() / 2,
             tagline = movieDetail.tagline,
             adult = movieDetail.adult,
             status = movieDetail.status

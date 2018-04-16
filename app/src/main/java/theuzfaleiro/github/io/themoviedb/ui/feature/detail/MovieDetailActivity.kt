@@ -34,7 +34,6 @@ class MovieDetailActivity : AppCompatActivity() {
         movieDetailViewModel = ViewModelProviders.of(this, movieViewModelFactory).get(MovieDetailViewModel::class.java)
 
         getMovieDetailsFromSelectedMovie(intent.extras.getParcelable<Movie>(MOVIE_SELECTED).id)
-
     }
 
     private fun getMovieDetailsFromSelectedMovie(movieId: Int) {
@@ -43,7 +42,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 with(movieDetail) {
                     textViewMovieName.text = this!!.title
                     textViewOriginalTitle.text = this.originalTitle
-                    textViewOriginalLanguage.text = this.originalLanguage ?: "Null"
+                    textViewOriginalLanguage.text = this.originalLanguage
                     textViewReleaseDate.text = this.releaseDate
                     textViewRuntime.text = this.runtime
                     ratingBarVoteAverage.rating = this.voteAverage
@@ -51,17 +50,19 @@ class MovieDetailActivity : AppCompatActivity() {
                     textViewTagLine.text = tagline
                     textViewOverview.text = overview
 
+                    imageViewMoviePoster.contentDescription = title
+
                     Glide.with(this@MovieDetailActivity)
                             .load(posterPath?.toPosterUrl() ?: "")
-                            .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                                    .error(R.drawable.ic_launcher_background)
+                            .apply(RequestOptions().placeholder(R.drawable.ic_default_movie_cover)
+                                    .error(R.drawable.ic_default_movie_cover)
                             )
                             .into(imageViewMoviePoster)
 
                     Glide.with(this@MovieDetailActivity)
                             .load(backdropPath?.toBackdropUrl())
-                            .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)
-                                    .error(R.drawable.ic_launcher_background)
+                            .apply(RequestOptions().placeholder(R.drawable.ic_default_movie_cover)
+                                    .error(R.drawable.ic_default_movie_cover)
                             )
                             .into(imageViewBackdrop)
                 }
