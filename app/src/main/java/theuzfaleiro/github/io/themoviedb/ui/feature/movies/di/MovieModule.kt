@@ -5,7 +5,7 @@ import dagger.Provides
 import theuzfaleiro.github.io.themoviedb.data.network.TheMovieDbEndpoint
 import theuzfaleiro.github.io.themoviedb.data.network.repository.movie.MovieRepository
 import theuzfaleiro.github.io.themoviedb.ui.feature.movies.MovieViewModelFactory
-import theuzfaleiro.github.io.themoviedb.util.Rx.RxSchedulers
+import theuzfaleiro.github.io.themoviedb.util.rx.RxSchedulers
 
 @Module
 class MovieModule {
