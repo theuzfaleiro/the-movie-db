@@ -24,8 +24,8 @@ class GenreViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val genreName = itemView.textViewMovieGenre
 
-    fun bindItemsToView(pullRequest: Genres) {
+    fun bindItemsToView(genre: Genres) {
 
-        genreName.text = pullRequest.name
+        genreName.text = genre.name
     }
 }
