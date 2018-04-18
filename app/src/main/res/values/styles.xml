@@ -6,4 +6,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="WithoutActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="BaseTextView">
+        <item name="android:textColor">@color/lightGray</item>
+    </style>
+
+    <style name="BaseTextViewTitle" parent="BaseTextView">
+        <item name="android:fontFamily">@font/nunito_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="WhiteRatingStar" parent="Base.Widget.AppCompat.RatingBar.Small">
+        <item name="colorAccent">@color/goldYellow</item>
+        <item name="colorControlNormal">#98ABBA</item>
+    </style>
+
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+
 </resources>

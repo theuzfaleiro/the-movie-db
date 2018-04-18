@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">Code Challenge</string>
-    <string name="movie_and_genres">%s - %s</string>
+    <string name="app_name">The Movie DB</string>
+    <string name="activity_movie_message_search_movie">Search For A Movie</string>
+    <string name="activity_movie_content_description">Movie Titile</string>
+    <string name="activity_movie_detail_item_separator">•</string>
+    <string name="activity_movie_detail_message_movie_runtime">mins</string>
+    <string name="activity_movie_error_please_try_again">Please Try Again Later</string>
+    <string name="activity_movie_content_description_sad_face">Sad Face</string>
 </resources>
